@@ -12,6 +12,7 @@ import './App.css'
 import NewsBlog from './newsblog/NewsBlog'
 //import Quiz04 from './quiz/quiz04/Quiz04'
 import Quiz05 from './quiz/quiz05/Quiz05'
+import FoodMarket from './foodmarket/foodmarket'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,9 +23,10 @@ function App() {
     // <State01/>
     // <Export01/>
     // <Props02/>
-    <NewsBlog/>
+    // <NewsBlog/>
     // <Quiz04/>
     // <Quiz05/>
+    <FoodMarket/>
 
   )
 }

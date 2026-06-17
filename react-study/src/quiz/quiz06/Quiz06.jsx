@@ -1,9 +1,9 @@
-import './Quiz05.css';
+import './Quiz06.css';
 import { useState } from 'react';
 
 
 
-function Quiz05(){
+function Quiz06(){
 
     let [boxes, setBoxes] = useState([<div className='box' style={{backgroundColor:'red'}}></div>,
                                     <div className='box' style={{backgroundColor:'green'}}></div>,
@@ -55,4 +55,4 @@ function Quiz05(){
 
 }
 
-export default Quiz05;
+export default Quiz06;
