@@ -143,15 +143,26 @@ function Detail({foods}) {
                     <p>{food.price}</p>
 
                     <p>
-                        <button variant="dard" onClick={()=>{setOrderConut(orderCount-1)}}>-</button>
+                        <button variant="dard" onClick={()=>{
+                            ㅑif(orderCount > 0)
+                                setOrderConut(orderCount-1)
+                            }}>-</button>
                         <span> {orderCount} </span>
                         <Button variant="dard" onClick={()=>{
-                            setOrderConut(orderCount+1)
+                            if(orderCount < food.stockCount)
+                                setOrderConut(orderCount+1)
                             console.log('onclick(): ' + orderCount)
                             }}>+</Button>
                     </p>
 
-                    <Button variant="primary">주문하기</Button>
+                    {
+                        food.stockCount == 0 ?
+                            <Button variant="seconadry"disabled="true">품절</Button>
+                            :
+                            <Button variant="primary">주문하기</Button>
+                    }
+
+                    
 
 
 
