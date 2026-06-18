@@ -19,7 +19,7 @@ function FoodCard( { food, foods, index}){
                         <Card.Text>{food.content}</Card.Text>
                         <Card.Text>{food.price}</Card.Text>
                         <Button variant="primary" onClick={()=>{
-                            navigate("/detail" + food.id);
+                            navigate("/detail/" + food.id);
                         }}>상세보기</Button>
                 </Card.Body>
             </Card>

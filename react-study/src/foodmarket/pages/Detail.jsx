@@ -1,6 +1,7 @@
-import { Container , Row, Col, Button} from "react-bootstrap";
+import { Container , Row, Col, Button, Modal} from "react-bootstrap";
 import { useParams , useNavigate} from "react-router";
 import { useState, useEffect } from "react";
+import './Detail.css';
 
 function Detail({foods}) {
 
@@ -11,7 +12,7 @@ function Detail({foods}) {
 
 
 
-    //-----------
+    //---------------------------------------------------------------------
 
     /*
         useEffect(실행할 함수, 의존성 배열)
@@ -27,6 +28,7 @@ function Detail({foods}) {
     let [orderCount, setOrderConut] = useState(0);
     let [test, setTest] = useState(0);
 
+
     useEffect(()=>{
         console.log('useEffect 함수 실행 의존성 배열 없음')
     }) //의존성배열 x -> 로딩될때마다 매번 실행
@@ -38,6 +40,11 @@ function Detail({foods}) {
     useEffect(()=>{
         console.log('useEffect 함수 실행 [orderCount] 의존성배열')
         console.log('useEffect[orderCount] :' + orderCount)
+
+        return ()=>{ //clean up function
+            console.log('useEffect[orderCount] -> return () 실행');
+        }
+
     }, [orderCount])  //의존성 배열에 존재하는 값 -> 참고
 
 
@@ -50,8 +57,47 @@ function Detail({foods}) {
     }, [ test, orderCount ])  //의존성 배열에 존재하는 값 -> 참고
 
 
+    let [viewStatus, setViewStatus] = useState(''); 
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setViewStatus('end');
+        }, 500)
+        
+    }, [])
+    
+    let [modalShow, setModalShow] = useState(true); //모달창 표시 여부 true, false
+
+    // modal 창 자동으로 닫히게 적용
+    useEffect(()=>{
+        //modalSohow state변수 true -> false
+        setTimeout(()=>{
+            setModalShow(false);
+        }, 2000)
+        //2초 후 닫음
+    }, [])
+
+    useEffect(()=>{
+
+        //setTimeout
+        //setInterval
+        //비동기식
+
+        //clearTiemout
 
 
+        const interv = setInterval(()=>{
+            console.log('interval');
+        }, 1000)
+
+        //vlean up function
+        return ()=> {
+            clearInterval(interv);
+        }
+
+    }, [orderCount])
+
+    //-------------------------------------------------------------------------
 
     // 경로에 있는 값을 읽어오기
     let { id } = useParams();
@@ -85,7 +131,7 @@ function Detail({foods}) {
     
 
     return (
-        <Container>
+        <Container className={"start " + viewStatus}>
             <Row>
                 <Col md={6}>
                     <img src ={import.meta.env.BASE_URL + food.imgPath} style={{width:'100%'}}/>
@@ -111,6 +157,30 @@ function Detail({foods}) {
 
                 </Col>
             </Row>
+
+            <Modal
+                show={modalShow}
+                onHide={()=>{ setModalShow(false); }}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        어서오세요
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4>Food Good</h4>
+                    <p>
+                        많이 구매하세요
+                    </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={()=>{ setModalShow(false); }}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+
         </Container>
     )
 
