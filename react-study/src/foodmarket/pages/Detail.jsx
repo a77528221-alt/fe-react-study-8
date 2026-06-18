@@ -193,13 +193,35 @@ function Detail({foods}) {
                 <Container className={"start " + viewStatus}>
 
                 5) js 객체로 내부에서 스타일 정의 후 사용
+                const styles = {
+
+                redStyle : { color : 'red'},
+
+                blueStyle : { color : 'blue'},
+
+                fontBigBold: {
+                    fontSize : '36px',
+                    fontWeight:'bold'
+                },
+
+            titleStyle : {
+                paddingTop:'30px',
+                fontSize:'40px',
+                fontWeight:'bold'
+            }
+        }
+
+        <h4 style={styles.titleStyle}>{food.title}</h4>
+        <h4 style={styles.fontBigBold}>{food.title}</h4>
+
+    }
 
     */
 
     const styles = {
 
         redStyle : { color : 'red'},
-        
+
         blueStyle : { color : 'blue'},
 
         fontBigBold: {
@@ -244,6 +266,8 @@ function Detail({foods}) {
 
                 <Col md = {6}>
                     <h4 style={{paddingTop:'30px'}}>{food.title}</h4>
+                    <h4 style={styles.titleStyle}>{food.title}</h4>
+                    <h4 style={styles.fontBigBold}>{food.title}</h4>
                     <p>{food.content}</p>
                     <p>{food.price}</p>
                     <p style={priceTextStyle}>{food.price}</p>
