@@ -27,8 +27,8 @@ function App() {
     // <NewsBlog/>
     // <Quiz04/>
     // <Quiz05/>
-    // <FoodMarket/>
-    <Routerquiz/>
+    <FoodMarket/>
+    // <Routerquiz/>
 
   )
 }
