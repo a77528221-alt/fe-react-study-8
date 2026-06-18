@@ -14,6 +14,7 @@ import NewsBlog from './newsblog/NewsBlog'
 import Quiz05 from './quiz/quiz05/Quiz05'
 import FoodMarket from './foodmarket/foodmarket'
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -26,7 +27,8 @@ function App() {
     // <NewsBlog/>
     // <Quiz04/>
     // <Quiz05/>
-    <FoodMarket/>
+    // <FoodMarket/>
+    <Routerquiz/>
 
   )
 }
