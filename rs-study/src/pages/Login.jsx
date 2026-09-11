@@ -80,8 +80,68 @@ function Login() {
                     .catch(error => console.log(error))
                 }}>로그인 여부 확인</button>
             </div>
+
+            <div>
+                <button onClick={()=>{
+
+                    axios.post('/api/loginJWT',
+                    {
+                        id:id,
+                        pw:pw
+                    },
+                    {
+                        header: {
+                            'Content-type':'application/json'
+                        }
+                    }
+                ).then((response)=>{
+                    console.log(response.data);
+
+                    let token = response.data;
+
+                    // 관리 -> 저장
+                    // state -> props
+                    // 전역상태관리 (Redux)
+                    // localStorage
+                    // cookie
+
+
+                    if(token != null && token !='') {
+                        //발급된 엑세스토큰 전달받음
+                        // 저장 -> 다음에 요청할 때 토큰값을 같이 담아서 요청
+
+                        // 토큰 -> localStorage
+                        // localStorage.setItem(key, value)
+                        // loaclStorage.getItem(key)
+                        // localStorage.removeItem(key)
+
+                        localStorage.setItem("token", token);
+                    }
+
+                    //로그인 성공/실패 확인 -> 이후 처리
+
+                }).catch(error => console.log(error)) }
+                }>로그인 JWT 방식</button>
+            </div>
+
+            <div>
+                <button onClick={()=>{
+                    let token = localStorage.getItem("token");
+
+                    axios.post(
+                        "/api/loginCheckJWT",
+                        {},
+                        {
+                            headers: {
+                                'Content-Type' : 'application/json',
+                                'Authorization' : "Bearer" + token
+                            }
+                        }
+                    ).then(response => console.log(response.data))
+                    .catch(error => console.log(error))
+                }}>로그인 여부 JWT 토큰 인식 확인</button>
+            </div>
         </div>
     )
 }
-
 export default Login;
