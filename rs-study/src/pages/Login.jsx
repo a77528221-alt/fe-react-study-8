@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import {userSelector, userDispatch} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {saveUserId, clearUserId} from '../store/store';
 
 
@@ -27,18 +27,18 @@ function Login() {
     // redux 개념 적용
     // redux 에 저장된 상태값에 접근
 
-    let reduxState = userSelector((state)=>{return state});
+    let reduxState = useSelector((state)=>{return state});
 
     console.log(reduxState);
     console.log(reduxState.user);
 
-    let user = userSelector((state)=>{return state.user});
+    let user = useSelector((state)=>{return state.user});
     console.log(user);
 
     // redux 저장용으로 전체 상태관리 store 에 등록된 slice 값을 변경하는 action 을 담는 함수를 호출하려면?
     // 단순함수호출x -> dispatch에 감싸서 요청 !    dispatch( 호출할함수(매개변수))
 
-    let dispatch = userDispatch();
+    let dispatch = useDispatch();
 
     // let navigate = userNavigate();
 
